@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://ch3an1msh2hkg"]
+
+[ext_resource type="Script" path="res://Scripts/battle_sprite.gd" id="1_3oo2i"]
+[ext_resource type="SpriteFrames" uid="uid://0fhiotbr5wue" path="res://Scenes/Character System/Player.tres" id="1_ahnmu"]
+[ext_resource type="Texture2D" uid="uid://cxm1r5vlfpjbx" path="res://Assets/Mine/Arrow Down.png" id="2_bdt1m"]
+[ext_resource type="PackedScene" uid="uid://f7avuoc5e85v" path="res://Scenes/UI/progress_bar.tscn" id="3_56qbe"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_whln7"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Animation" id="Animation_rm4ga"]
+resource_name = "Hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(30, 0, 0, 1), Color(1, 1, 1, 1), Color(30, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xu8e5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(30, 30, 30, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wjxql"]
+_data = {
+"Hurt": SubResource("Animation_rm4ga"),
+"RESET": SubResource("Animation_xu8e5")
+}
+
+[node name="BattleSprite" type="CharacterBody3D"]
+script = ExtResource("1_3oo2i")
+move_array = [&"Attack", &"Attack 1", &"Attack 2", &"Attack 3"]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+modulate = Color(30, 30, 30, 1)
+billboard = 1
+texture_filter = 0
+sprite_frames = ExtResource("1_ahnmu")
+animation = &"idle"
+
+[node name="focus" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.677752, 0)
+visible = false
+billboard = 1
+texture = ExtResource("2_bdt1m")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="ProgressBar" parent="SubViewport" instance=ExtResource("3_56qbe")]
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.381468, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_whln7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wjxql")
+}

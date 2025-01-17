@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://b7tj34jqoqljo"]
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=6 format=3 uid="uid://b7tj34jqoqljo"]
 
 [ext_resource type="Resource" uid="uid://5cmo6w0to3d" path="res://Scenes/Inventory/Items/Category/Weapons Category.tres" id="1_fdyck"]
+[ext_resource type="Script" path="res://addons/inventory-system/core/item_category.gd" id="1_qn68o"]
 [ext_resource type="Texture2D" uid="uid://dpamy63ikcwqb" path="res://Assets/Public Domain/Icons34x34byAilsEnglish2013/W_Dagger005.png" id="2_3cihh"]
 [ext_resource type="Resource" uid="uid://cd25hd504cpku" path="res://Scenes/Inventory/Items/Category/Common_Rank.tres" id="3_8n33t"]
 [ext_resource type="Script" path="res://addons/inventory-system/core/inventory_item.gd" id="3_n1x7m"]
@@ -16,4 +17,4 @@ properties = {
 "Lore": &"A Common Knife",
 "Rank": ExtResource("3_8n33t")
 }
-categories = Array[Resource("res://addons/inventory-system/core/item_category.gd")]([ExtResource("1_fdyck")])
+categories = Array[ExtResource("1_qn68o")]([ExtResource("1_fdyck")])

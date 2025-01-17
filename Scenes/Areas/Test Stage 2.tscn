@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b5iaq5o4e4a5o"]
+[gd_scene load_steps=36 format=3 uid="uid://b5iaq5o4e4a5o"]
 
 [ext_resource type="Script" path="res://Scripts/Scene Manager/SceneLocalHandler.gd" id="1_pdxru"]
 [ext_resource type="Texture2D" uid="uid://dxrl0plwi6tpr" path="res://Assets/Mine/White Square 32x32.png" id="2_lvkdb"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b85cssrnfceqg" path="res://Scenes/Server.glb" id="16_82jg3"]
 [ext_resource type="PackedScene" uid="uid://dhxn5816mupbe" path="res://Assets/Mine/Person.tscn" id="18_el7d7"]
 [ext_resource type="PackedScene" uid="uid://ey7uesfx7jkx" path="res://Assets/Mine/Person Armored Final.tscn" id="19_rn10c"]
+[ext_resource type="PackedScene" uid="uid://cn4fid0hkeffa" path="res://Assets/Mine/Building.tscn" id="20_5bem4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xiwu5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,22 +61,24 @@ size = Vector3(20, 1, 20)
 script = ExtResource("11_w0j05")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_wa0hf"]
 script = ExtResource("11_w0j05")
 Item = ExtResource("12_no747")
 amount = 2
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_504s7"]
 script = ExtResource("11_w0j05")
 Item = ExtResource("13_pdpdj")
 amount = 1
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_vrjcc"]
 script = ExtResource("9_rewwu")
-inventorySize = 0
 slots = Array[ExtResource("11_w0j05")]([SubResource("Resource_codf7"), SubResource("Resource_wa0hf"), SubResource("Resource_504s7")])
 
 [sub_resource type="Resource" id="Resource_fo83a"]
@@ -83,10 +86,10 @@ script = ExtResource("11_w0j05")
 Item = ExtResource("10_42o83")
 amount = 1
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_lopj8"]
 script = ExtResource("9_rewwu")
-inventorySize = 0
 slots = Array[ExtResource("11_w0j05")]([SubResource("Resource_fo83a")])
 
 [node name="Test Stage" type="Node3D"]
@@ -202,5 +205,8 @@ transform = Transform3D(0.346393, 0, -0.360572, 0, 0.5, 0, 0.360572, 0, 0.346393
 localContent = SubResource("Resource_vrjcc")
 
 [node name="Chest 1" parent="Interactable/Chest" instance=ExtResource("15_uh2k7")]
-transform = Transform3D(0.000331618, 0, -0.5, 0, 0.5, 0, 0.5, 0, 0.000331618, 6.79423, 0, 0.83381)
+transform = Transform3D(0.000331618, 0, -0.5, 0, 0.5, 0, 0.5, 0, 0.000331618, 7.78506, 0, 0.83381)
 localContent = SubResource("Resource_lopj8")
+
+[node name="Building" parent="." instance=ExtResource("20_5bem4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8, 0, -2)

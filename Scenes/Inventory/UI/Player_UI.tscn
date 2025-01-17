@@ -1,0 +1,458 @@
+[gd_scene load_steps=20 format=3 uid="uid://dhfniiiaoycfn"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Player_UI.gd" id="1_8tm7d"]
+[ext_resource type="Texture2D" uid="uid://4xhq8i0053ln" path="res://Assets/Unity Assets/Cursors 64/Arrow.png" id="2_nkmcn"]
+[ext_resource type="Texture2D" uid="uid://oepbhtnuim7n" path="res://Assets/Unity Assets/Cursors 64/Arrow_Loot.png" id="3_4gigh"]
+[ext_resource type="Texture2D" uid="uid://ccpx17p57ljbj" path="res://Assets/Unity Assets/Cursors 64/Cursor_book.png" id="4_7o32t"]
+[ext_resource type="Texture2D" uid="uid://dw8s5k83r0mlt" path="res://Assets/Unity Assets/Cursors 64/Cursor_Flask.png" id="5_4xvtf"]
+[ext_resource type="Texture2D" uid="uid://bcmyblp5b03fy" path="res://Assets/Unity Assets/Cursors 64/Cursor_Settings.png" id="6_hqjsq"]
+[ext_resource type="Texture2D" uid="uid://cirywn33ko4ku" path="res://Assets/Unity Assets/Cursors 64/Arrow_Cross_Smaller.png" id="7_l3nal"]
+[ext_resource type="Texture2D" uid="uid://ln3mqm4k0v8n" path="res://Assets/Unity Assets/Cursors 64/Arrow_Compass.png" id="8_jf5gj"]
+[ext_resource type="Script" path="res://Scripts/UI/FPSMETER.gd" id="9_1kgxg"]
+[ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="10_wp2r1"]
+[ext_resource type="LabelSettings" uid="uid://brga87epp8vkw" path="res://Visual Settings/Tooltip_Name_Label_Settings.tres" id="11_1bumr"]
+[ext_resource type="LabelSettings" uid="uid://clrpb3nkyyd5c" path="res://Visual Settings/Tooltip_Rank_Label_Settings.tres" id="12_q85j8"]
+[ext_resource type="LabelSettings" uid="uid://cyml2y20dido5" path="res://Visual Settings/Tooltip_Label_Settings.tres" id="13_2blt3"]
+[ext_resource type="LabelSettings" uid="uid://yfywcy2xayd0" path="res://Visual Settings/Tooltip_Lore_Title_Label_Settings.tres" id="14_vdjir"]
+[ext_resource type="LabelSettings" uid="uid://dgiyc4l43apdm" path="res://Visual Settings/Tooltip_Lore_Desc_Label_Settings.tres" id="15_mu57y"]
+[ext_resource type="PackedScene" uid="uid://dyn7e6d3dcws" path="res://Scenes/Inventory/UI/PartyItemInv UI.tscn" id="17_pqsbi"]
+[ext_resource type="PackedScene" uid="uid://cdrhmfpa3xyei" path="res://Scenes/Inventory/UI/Scaling Inv UI.tscn" id="17_q0okm"]
+[ext_resource type="Script" path="res://Scripts/UI/UI_Party.gd" id="17_ubgou"]
+[ext_resource type="PackedScene" uid="uid://bip3m2ti8w4ek" path="res://Scenes/Inventory/Party_slot.tscn" id="18_culaf"]
+
+[node name="Player_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8tm7d")
+default_cursor = ExtResource("2_nkmcn")
+coin_cursor = ExtResource("3_4gigh")
+book_cursor = ExtResource("4_7o32t")
+bottle_cursor = ExtResource("5_4xvtf")
+setting_cursor = ExtResource("6_hqjsq")
+cross_cursor = ExtResource("7_l3nal")
+compass_cursor = ExtResource("8_jf5gj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPSMETER" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS: 000"
+script = ExtResource("9_1kgxg")
+
+[node name="Tooltip" type="Control" parent="CanvasLayer"]
+visible = false
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 120.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Tooltip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_wp2r1")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Tooltip/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Tooltip/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Tooltip_Name" type="Label" parent="CanvasLayer/Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Item Name Her"
+label_settings = ExtResource("11_1bumr")
+vertical_alignment = 1
+
+[node name="Tooltip_Rank" type="Label" parent="CanvasLayer/Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rank"
+label_settings = ExtResource("12_q85j8")
+
+[node name="Tooltip_Properties" type="Label" parent="CanvasLayer/Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Item Name Here"
+label_settings = ExtResource("13_2blt3")
+autowrap_mode = 3
+
+[node name="Tooltip_Lore_Title" type="Label" parent="CanvasLayer/Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Lore"
+label_settings = ExtResource("14_vdjir")
+
+[node name="Tooltip_Lore_Desc" type="Label" parent="CanvasLayer/Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "S"
+label_settings = ExtResource("15_mu57y")
+autowrap_mode = 3
+
+[node name="Multi Inventory" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(316, 128)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -64.0
+offset_right = 158.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Multi Inventory"]
+custom_minimum_size = Vector2(316, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -64.0
+offset_right = 160.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Multi Inventory/CenterContainer"]
+custom_minimum_size = Vector2(316, 128)
+layout_mode = 2
+columns = 2
+
+[node name="Player" parent="CanvasLayer/Multi Inventory/CenterContainer/GridContainer" instance=ExtResource("17_q0okm")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Interactable" parent="CanvasLayer/Multi Inventory/CenterContainer/GridContainer" instance=ExtResource("17_q0okm")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="ItemDisplay Inventory" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(316, 128)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -64.0
+offset_right = 158.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ItemDisplay Inventory"]
+custom_minimum_size = Vector2(316, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -64.0
+offset_right = 160.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ItemDisplay Inventory/CenterContainer"]
+custom_minimum_size = Vector2(316, 128)
+layout_mode = 2
+columns = 2
+
+[node name="Player" parent="CanvasLayer/ItemDisplay Inventory/CenterContainer/GridContainer" instance=ExtResource("17_q0okm")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="PartyMember" parent="CanvasLayer/ItemDisplay Inventory/CenterContainer/GridContainer" instance=ExtResource("17_pqsbi")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Single Inventory" type="Control" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(157, 123)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -61.5
+offset_right = 78.5
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" parent="CanvasLayer/Single Inventory" instance=ExtResource("17_q0okm")]
+layout_mode = 1
+offset_left = -69.0
+offset_top = -69.0
+offset_right = 69.0
+offset_bottom = 69.0
+
+[node name="Main Menu" type="Control" parent="CanvasLayer"]
+visible = false
+custom_minimum_size = Vector2(90, 215)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -107.5
+offset_right = 45.0
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Main Menu"]
+texture_filter = 1
+custom_minimum_size = Vector2(90, 215)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -107.5
+offset_right = 45.0
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_wp2r1")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Main Menu/NinePatchRect"]
+custom_minimum_size = Vector2(85, 206)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -103.0
+offset_right = 42.5
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bestiary_Button" type="Button" parent="CanvasLayer/Main Menu/NinePatchRect/GridContainer"]
+layout_mode = 2
+text = "Bestiary"
+
+[node name="Party_Button" type="Button" parent="CanvasLayer/Main Menu/NinePatchRect/GridContainer"]
+layout_mode = 2
+text = "Party"
+
+[node name="Inventory_Button" type="Button" parent="CanvasLayer/Main Menu/NinePatchRect/GridContainer"]
+layout_mode = 2
+text = "Inventory
+"
+
+[node name="Options_Button" type="Button" parent="CanvasLayer/Main Menu/NinePatchRect/GridContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Save_Button" type="Button" parent="CanvasLayer/Main Menu/NinePatchRect/GridContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="Exit_Button" type="Button" parent="CanvasLayer/Main Menu/NinePatchRect/GridContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="Party" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_ubgou")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Party"]
+texture_filter = 1
+custom_minimum_size = Vector2(315, 188)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.5
+offset_top = -103.0
+offset_right = 157.5
+offset_bottom = 103.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_wp2r1")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Party/NinePatchRect"]
+custom_minimum_size = Vector2(304, 188)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -94.0
+offset_right = 152.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="P1" parent="CanvasLayer/Party/NinePatchRect/GridContainer" instance=ExtResource("18_culaf")]
+layout_mode = 2
+
+[node name="P2" parent="CanvasLayer/Party/NinePatchRect/GridContainer" instance=ExtResource("18_culaf")]
+layout_mode = 2
+
+[node name="P3" parent="CanvasLayer/Party/NinePatchRect/GridContainer" instance=ExtResource("18_culaf")]
+layout_mode = 2
+
+[node name="P4" parent="CanvasLayer/Party/NinePatchRect/GridContainer" instance=ExtResource("18_culaf")]
+layout_mode = 2
+
+[node name="P5" parent="CanvasLayer/Party/NinePatchRect/GridContainer" instance=ExtResource("18_culaf")]
+layout_mode = 2
+
+[node name="P6" parent="CanvasLayer/Party/NinePatchRect/GridContainer" instance=ExtResource("18_culaf")]
+layout_mode = 2
+
+[node name="Options" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Options"]
+texture_filter = 1
+custom_minimum_size = Vector2(90, 215)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -107.5
+offset_right = 45.0
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_wp2r1")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Bestiary" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Bestiary"]
+texture_filter = 1
+custom_minimum_size = Vector2(90, 215)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -107.5
+offset_right = 45.0
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_wp2r1")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[connection signal="pressed" from="CanvasLayer/Main Menu/NinePatchRect/GridContainer/Bestiary_Button" to="." method="_on_bestiary_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main Menu/NinePatchRect/GridContainer/Party_Button" to="." method="_on_party_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main Menu/NinePatchRect/GridContainer/Inventory_Button" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main Menu/NinePatchRect/GridContainer/Options_Button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main Menu/NinePatchRect/GridContainer/Save_Button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main Menu/NinePatchRect/GridContainer/Exit_Button" to="." method="_on_exit_button_pressed"]

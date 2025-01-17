@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityMoves" load_steps=2 format=3 uid="uid://mhxjrkbpuemq"]
+
+[ext_resource type="Script" path="res://Scripts/Moves/Moves.gd" id="1_bqewj"]
+
+[resource]
+script = ExtResource("1_bqewj")
+Name = "Attack(Strong)"
+MoveType = 1
+Category = 1
+PowerPoints = 100.0
+Power = 100.0
+Accuracy = 100.0
+ValidTargets = [3]

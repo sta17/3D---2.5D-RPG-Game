@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyn7e6d3dcws"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Party Item Inv UI.gd" id="1_msxko"]
+[ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="2_owlqy"]
+[ext_resource type="PackedScene" uid="uid://0jenben0gcry" path="res://Scenes/Inventory/UI/Categorized Inv UI Slot.tscn" id="3_e43um"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -45.0
+offset_right = 80.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_msxko")
+
+[node name="Chest_invent" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -45.0
+offset_right = 80.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_owlqy")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="ManyItems" type="GridContainer" parent="Chest_invent"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 42.0
+offset_bottom = 42.0
+columns = 4
+
+[node name="Categorized Inv UI Slot1" parent="Chest_invent/ManyItems" instance=ExtResource("3_e43um")]
+layout_mode = 2
+
+[node name="Categorized Inv UI Slot2" parent="Chest_invent/ManyItems" instance=ExtResource("3_e43um")]
+layout_mode = 2
+
+[node name="Categorized Inv UI Slot3" parent="Chest_invent/ManyItems" instance=ExtResource("3_e43um")]
+layout_mode = 2
+
+[node name="Categorized Inv UI Slot4" parent="Chest_invent/ManyItems" instance=ExtResource("3_e43um")]
+layout_mode = 2
+
+[node name="Categorized Inv UI Slot5" parent="Chest_invent/ManyItems" instance=ExtResource("3_e43um")]
+layout_mode = 2
+
+[node name="SingleItem" type="GridContainer" parent="Chest_invent"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 42.0
+offset_bottom = 42.0
+columns = 4
+
+[node name="Categorized Inv UI Slot" parent="Chest_invent/SingleItem" instance=ExtResource("3_e43um")]
+layout_mode = 2

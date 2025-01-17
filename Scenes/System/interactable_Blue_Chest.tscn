@@ -7,7 +7,7 @@
 size = Vector3(1, 2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ggfg6"]
-size = Vector3(1, 2, 2)
+size = Vector3(2, 2, 2)
 
 [node name="Interactable_Blue_Chest" type="StaticBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -20,7 +20,7 @@ shape = SubResource("BoxShape3D_nmrcm")
 [node name="InteractArea" type="Area3D" parent="."]
 
 [node name="InteractAreaCollision" type="CollisionShape3D" parent="InteractArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0321045, 1, 0.5)
 shape = SubResource("BoxShape3D_ggfg6")
 
 [node name="Interactable" parent="." instance=ExtResource("2_f2dgq")]

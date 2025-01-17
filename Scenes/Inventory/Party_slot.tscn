@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=3 uid="uid://bip3m2ti8w4ek"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Party_Slot.gd" id="1_c5pti"]
+[ext_resource type="Texture2D" uid="uid://c1d6bdd5mwwcf" path="res://Assets/Mine/Select Frame.png" id="2_3uin0"]
+[ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="2_dr2q3"]
+
+[node name="Party_slot" type="Control"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 154.0
+offset_bottom = 75.0
+script = ExtResource("1_c5pti")
+
+[node name="Highlight_Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Highlight" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3uin0")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Frame" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_dr2q3")
+
+[node name="Icon" type="TextureRect" parent="Frame"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name_Label" type="Label" parent="."]
+custom_minimum_size = Vector2(85, 20)
+layout_mode = 0
+offset_left = 42.0
+offset_top = 8.0
+offset_right = 127.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 14
+text = "Name"
+
+[node name="HP_Label" type="Label" parent="."]
+custom_minimum_size = Vector2(85, 20)
+layout_mode = 0
+offset_left = 42.0
+offset_top = 28.0
+offset_right = 127.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 14
+text = "HP"
+
+[node name="Level_Label" type="Label" parent="."]
+custom_minimum_size = Vector2(85, 20)
+layout_mode = 0
+offset_left = 42.0
+offset_top = 48.0
+offset_right = 127.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 14
+text = "Level"
+
+[connection signal="pressed" from="Highlight_Button" to="." method="_on_button_pressed"]

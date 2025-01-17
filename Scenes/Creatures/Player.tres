@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BaseCreature" load_steps=5 format=3 uid="uid://cf3ee528ca0x1"]
+
+[ext_resource type="Script" path="res://Scripts/Creatures/Creature.gd" id="1_aoiew"]
+[ext_resource type="Texture2D" uid="uid://jq252s4atxu8" path="res://Assets/Public Domain/Icons34x34byAilsEnglish2013/S_Water07.png" id="1_dlmon"]
+[ext_resource type="Resource" uid="uid://mhxjrkbpuemq" path="res://Scenes/Moves/Attack(Strong).tres" id="2_55fms"]
+[ext_resource type="Resource" uid="uid://b5vxgx21casvt" path="res://Scenes/Moves/Attack(Weak).tres" id="3_o7756"]
+
+[resource]
+script = ExtResource("1_aoiew")
+Name = "Player"
+PartyTexture = ExtResource("1_dlmon")
+MainType = 6
+SubType = 0
+Base_HP = 20.0
+Base_Speed = 20.0
+Base_Special_Attack = 20.0
+Base_Special_Defense = 20.0
+Base_Attack = 20.0
+Base_Defense = 20.0
+move_array = {
+1: [ExtResource("2_55fms"), ExtResource("3_o7756")]
+}

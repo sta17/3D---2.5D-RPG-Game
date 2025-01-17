@@ -3,8 +3,6 @@ class_name Inv
 
 signal update
 
-@export var inventorySize: int
-
 @export var slots: Array[InvSlot]
 
 func _ready():
@@ -13,21 +11,25 @@ func _ready():
 		slot.index = i
 		i = i + 1
 
-func Insert(Item: InventoryItem):
-	InsertWithAmount(Item,1)
+func Add(Item: InventoryItem):
+	AddWithAmount(Item,1)
 
-func InsertWithAmount(Item: InventoryItem,amount:int):
+func AddWithAmount(Item: InventoryItem,amount:int) -> bool:
 	var itemslots = slots.filter(func(slot): return slot.Item == Item)
 	if !itemslots.is_empty():
 		itemslots[0].amount += amount
+		update.emit()
+		return true
 	else:
 		var emptyslots = slots.filter(func(slot): return slot.Item == null)
 		if !emptyslots.is_empty():
 			emptyslots[0].Item = Item
 			emptyslots[0].amount = amount
-	update.emit()
+			update.emit()
+			return true
+	return false
 
-func Add_at_Index(slot: InvSlot, slotnumber: int) -> bool:
+func Add_Slot_at_Index(slot: InvSlot, slotnumber: int) -> bool:
 	if slots[slotnumber].Item == slot.Item:
 		slots[slotnumber].amount += slot.amount
 		update.emit()
@@ -43,9 +45,8 @@ func Add_at_Index(slot: InvSlot, slotnumber: int) -> bool:
 func Check_Addable_at_Index(slot: InvSlot, slotnumber: int) -> bool:
 	if slots[slotnumber].Item == slot.Item:
 		return true
-	else:
-		if slots[slotnumber].Item == null:
-			return true
+	elif slots[slotnumber].Item == null:
+		return true
 	return false
 
 func Remove_at_Index(slotnumber: int) -> bool:

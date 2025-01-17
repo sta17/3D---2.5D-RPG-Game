@@ -6,13 +6,11 @@ class_name Slot
 @export var amount := 0
 @export var max_stack := -1
 
-
 func get_item_id() -> int:
 	if item == null:
 		return InventoryItem.NONE
 	else:
 		return item.id
-
 
 func add(item : InventoryItem, amount : int) -> int:
 	if item == null:
@@ -26,7 +24,6 @@ func add(item : InventoryItem, amount : int) -> int:
 		self.item = item
 	return amount - amount_to_add
 
-
 func remove(item : InventoryItem, amount : int) -> int:
 	if item == null:
 		return amount
@@ -38,17 +35,14 @@ func remove(item : InventoryItem, amount : int) -> int:
 		self.item = null;
 	return amount - amount_to_remove
 
-
 func get_max_stack_for_item(item : InventoryItem) -> int:
 	if max_stack == -1:
 		return item.max_stack
 	else:
 		return max_stack
 
-
 func get_max_stack() -> int:
 	return get_max_stack_for_item(item)
-
 
 func is_full() -> bool:
 	if item == null:

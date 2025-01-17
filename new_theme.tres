@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dy1av8h8a43g0"]
+
+[ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="1_4dihb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_isu33"]
+texture = ExtResource("1_4dihb")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qaqq5"]
+bg_color = Color(0.235294, 1, 0, 1)
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxTexture_isu33")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_qaqq5")

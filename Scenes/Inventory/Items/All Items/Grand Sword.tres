@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://cnvgrkfj3jgyj"]
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=6 format=3 uid="uid://cnvgrkfj3jgyj"]
 
+[ext_resource type="Script" path="res://addons/inventory-system/core/item_category.gd" id="1_m4atr"]
 [ext_resource type="Resource" uid="uid://5cmo6w0to3d" path="res://Scenes/Inventory/Items/Category/Weapons Category.tres" id="1_w3em1"]
 [ext_resource type="Texture2D" uid="uid://uwrnuacoe8pf" path="res://Assets/Public Domain/Items/sword 32.png" id="2_ugmh1"]
 [ext_resource type="Script" path="res://addons/inventory-system/core/inventory_item.gd" id="3_joade"]
@@ -16,4 +17,4 @@ properties = {
 "Lore": &"A Sword of Old, mystically forged with lost means",
 "Rank": ExtResource("3_w85q7")
 }
-categories = Array[Resource("res://addons/inventory-system/core/item_category.gd")]([ExtResource("1_w3em1")])
+categories = Array[ExtResource("1_m4atr")]([ExtResource("1_w3em1")])

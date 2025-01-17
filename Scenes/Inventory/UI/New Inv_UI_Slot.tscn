@@ -1,22 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsxbl7wbfmg6d"]
+[gd_scene load_steps=5 format=3 uid="uid://bsxbl7wbfmg6d"]
 
-[ext_resource type="Script" path="res://Scripts/UI/Inv_UI_Slot.gd" id="1_xx8y7"]
+[ext_resource type="Script" path="res://Scripts/UI/Inv_UI_Slot.gd" id="1_g3e2c"]
 [ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="2_l1vda"]
 
 [sub_resource type="Theme" id="Theme_hwxxx"]
 
-[sub_resource type="SystemFont" id="SystemFont_v7rmo"]
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_6b72b"]
-font = SubResource("SystemFont_v7rmo")
 font_size = 29
 outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 
 [node name="inv_UI_slot" type="Panel"]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
-script = ExtResource("1_xx8y7")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g3e2c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -24,17 +32,29 @@ texture = ExtResource("2_l1vda")
 centered = false
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="CenterContainer"]
+texture_filter = 1
 layout_mode = 2
 mouse_filter = 2
 
 [node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
 show_behind_parent = true
+texture_filter = 1
 
 [node name="Label" type="Label" parent="CenterContainer/Panel"]
 custom_minimum_size = Vector2(30, 42)
@@ -50,6 +70,7 @@ text = "99"
 label_settings = SubResource("LabelSettings_6b72b")
 horizontal_alignment = 2
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

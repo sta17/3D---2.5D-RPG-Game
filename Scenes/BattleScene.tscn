@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://chffpgdn4wkg0"]
+[gd_scene load_steps=14 format=3 uid="uid://chffpgdn4wkg0"]
 
 [ext_resource type="Script" path="res://Scripts/BattleScene.gd" id="1_bmkp1"]
 [ext_resource type="Texture2D" uid="uid://l53brq0f8fh7" path="res://Assets/Mine/Green Square 32x32.png" id="1_tmj3u"]
 [ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="3_xlnm1"]
+[ext_resource type="PackedScene" uid="uid://ch3an1msh2hkg" path="res://Scenes/Character System/battle_sprite.tscn" id="4_uqqth"]
+[ext_resource type="Script" path="res://Scripts/BattlePlayer.gd" id="4_y7ygf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oglji"]
 albedo_texture = ExtResource("1_tmj3u")
@@ -13,6 +15,26 @@ material = SubResource("StandardMaterial3D_oglji")
 size = Vector3(10, 0.25, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rlwcs"]
+
+[sub_resource type="Theme" id="Theme_6607p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w44w5"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vdk5c"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sie4c"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_e3ifw"]
 height = 0.15
@@ -32,13 +54,17 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
 shape = SubResource("BoxShape3D_rlwcs")
 
-[node name="Battle UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 809.0
-offset_bottom = 414.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Battle UI"]
+[node name="Battle UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Battle UI"]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 534.0
@@ -50,7 +76,7 @@ patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
 
-[node name="Panel" type="Panel" parent="Battle UI/NinePatchRect"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Battle UI/NinePatchRect"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 15
@@ -58,40 +84,159 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_6607p")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_w44w5")
 
-[node name="Main" type="Control" parent="Battle UI/NinePatchRect/Panel"]
+[node name="Panel - Main Actions" type="Panel" parent="CanvasLayer/Battle UI/NinePatchRect/Panel"]
+custom_minimum_size = Vector2(100, 100)
+layout_direction = 2
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vdk5c")
+
+[node name="Choice" type="GridContainer" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Main Actions"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -33.0
+offset_right = 55.5
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
 
-[node name="Attack Options" type="Control" parent="Battle UI/NinePatchRect/Panel"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Attack" type="Button" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Main Actions/Choice"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Attack
+"
+
+[node name="Item" type="Button" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Main Actions/Choice"]
+layout_mode = 2
+text = "Bag
+"
+
+[node name="Flee" type="Button" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Main Actions/Choice"]
+layout_mode = 2
+text = "Flee
+"
+
+[node name="Party" type="Button" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Main Actions/Choice"]
+layout_mode = 2
+text = "Party
+"
+
+[node name="Panel - Move List" type="Panel" parent="CanvasLayer/Battle UI/NinePatchRect/Panel"]
+custom_minimum_size = Vector2(100, 100)
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = 50.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sie4c")
+
+[node name="Choice" type="GridContainer" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Move List"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -33.0
+offset_right = 55.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Move 1" type="Button" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Move List/Choice"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Move 1"
+
+[node name="Move 2" type="Button" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Move List/Choice"]
+layout_mode = 2
+text = "Move 2
+"
+
+[node name="Move 3" type="Button" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Move List/Choice"]
+layout_mode = 2
+text = "Move 3"
+
+[node name="Move 4" type="Button" parent="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Move List/Choice"]
+layout_mode = 2
+text = "Move 4
+"
 
 [node name="Player" type="Node" parent="."]
+script = ExtResource("4_y7ygf")
 
-[node name="Player1" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51135, 0.0128022, 2.49024)
-mesh = SubResource("CylinderMesh_e3ifw")
-skeleton = NodePath("../..")
+[node name="BattleSprite" parent="Player" instance=ExtResource("4_uqqth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.15, 2.5)
 
-[node name="Player2" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50731, 0.0128022, 2.49024)
-mesh = SubResource("CylinderMesh_e3ifw")
-skeleton = NodePath("../..")
+[node name="BattleSprite2" parent="Player" instance=ExtResource("4_uqqth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.15, 2.5)
 
 [node name="Enemy" type="Node" parent="."]
+script = ExtResource("4_y7ygf")
 
-[node name="Enemy1" type="MeshInstance3D" parent="Enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50731, 0.0128022, -1.49951)
+[node name="BattleSprite" parent="Enemy" instance=ExtResource("4_uqqth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.15, -1.5)
+
+[node name="BattleSprite2" parent="Enemy" instance=ExtResource("4_uqqth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.15, -1.5)
+
+[node name="Locations" type="Node" parent="."]
+
+[node name="Player1" type="MeshInstance3D" parent="Locations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2.5)
 mesh = SubResource("CylinderMesh_e3ifw")
 skeleton = NodePath("../..")
 
-[node name="Enemy2" type="MeshInstance3D" parent="Enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49278, 0.0128022, -1.49951)
+[node name="Player2" type="MeshInstance3D" parent="Locations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
 mesh = SubResource("CylinderMesh_e3ifw")
 skeleton = NodePath("../..")
+
+[node name="Enemy1" type="MeshInstance3D" parent="Locations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -1.5)
+mesh = SubResource("CylinderMesh_e3ifw")
+skeleton = NodePath("../..")
+
+[node name="Enemy2" type="MeshInstance3D" parent="Locations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1.5)
+mesh = SubResource("CylinderMesh_e3ifw")
+skeleton = NodePath("../..")
+
+[connection signal="pressed" from="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Main Actions/Choice/Attack" to="Player" method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Main Actions/Choice/Item" to="Player" method="_on_item_pressed"]
+[connection signal="pressed" from="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Main Actions/Choice/Flee" to="Player" method="_on_flee_pressed"]
+[connection signal="pressed" from="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Main Actions/Choice/Party" to="Player" method="_on_party_pressed"]
+[connection signal="pressed" from="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Move List/Choice/Move 1" to="Player" method="_on_move_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Move List/Choice/Move 2" to="Player" method="_on_move_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Move List/Choice/Move 3" to="Player" method="_on_move_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Battle UI/NinePatchRect/Panel/Panel - Move List/Choice/Move 4" to="Player" method="_on_move_4_pressed"]

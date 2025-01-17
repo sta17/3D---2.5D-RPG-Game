@@ -7,63 +7,74 @@
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_tnryv"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_t7kog"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_6816r"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_n8uf5"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_s5e6x"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_eo5be"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_e47v0"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_nnu1p"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_7c7cy"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_8w3x5"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [sub_resource type="Resource" id="Resource_i8d0f"]
 script = ExtResource("2_inxdt")
 amount = 0
 index = 0
+max_stack = -1
 
 [resource]
 script = ExtResource("1_dqrwk")
-inventorySize = 0
 slots = Array[ExtResource("2_inxdt")]([SubResource("Resource_xn1tw"), SubResource("Resource_tnryv"), SubResource("Resource_t7kog"), SubResource("Resource_6816r"), SubResource("Resource_n8uf5"), SubResource("Resource_s5e6x"), SubResource("Resource_eo5be"), SubResource("Resource_e47v0"), SubResource("Resource_nnu1p"), SubResource("Resource_7c7cy"), SubResource("Resource_8w3x5"), SubResource("Resource_i8d0f")])

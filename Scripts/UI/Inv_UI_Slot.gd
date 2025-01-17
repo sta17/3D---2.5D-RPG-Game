@@ -11,6 +11,8 @@ extends Panel
 
 var inv: Inv
 
+var multi_handler: Object
+
 var dragging: bool = false
 var filled: bool = false
 var amount: int
@@ -22,17 +24,31 @@ func update(slot: InvSlot):
 		hide_slot_visual()
 		filled = false
 	else:
-		show_slot_visual()
 		slotData = slot
 		item_visual.texture = slot.Item.icon
-		if slot.amount > 1:
+		amount_text.visible = false
+		if slot.amount > 1 :#or slot.amount != null:
 			amount_text.text = str(slot.amount)
 			amount = slot.amount
-		else:
-			amount_text.visible = false
-			amount = 1
+			amount_text.visible = true
 		filled = true
+		item_visual.visible = true
 
+func _on_gui_input(event: InputEvent):
+	#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.double_click:
+		print("You selected:", self.name, " On GUI Double Click")
+		
+		if multi_handler:
+			
+			var data : Dictionary
+			data["SlotData"] = slotData
+			data["Slot"] = self
+			data["inv"] = inv
+			
+			multi_handler.moveDoubleClick(data)
+			tooltiphandler.hide_tooltip()
+		
 func hide_slot_visual():
 	item_visual.visible = false
 	amount_text.visible = false
@@ -53,6 +69,8 @@ func RemoveSlotData():
 	item_visual.texture = null
 	slotData = null
 	filled = false
+	amount = 0
+	amount_text.text = ""
 
 func _get_drag_data(at_position):
 	
@@ -78,6 +96,7 @@ func _get_drag_data(at_position):
 	set_drag_preview(preview)
 	
 	hide_slot_visual()
+	tooltiphandler.hide_tooltip()
 	
 	dragging = true
 	
@@ -95,7 +114,7 @@ func _can_drop_data(at_position, data):
 			return false
 		if(inv.Check_Addable_at_Index(data["SlotData"],index)):
 			return true
-		return true
+		return false
 
 func _notification(notification_type):
 	match notification_type:
@@ -103,12 +122,12 @@ func _notification(notification_type):
 			if dragging and filled:
 				if !is_drag_successful():
 					show_slot_visual()
-					amount_text.text = str(amount)
+					update(slotData)
 				dragging = false
 
 func _drop_data(at_position, data):
 	
-	inv.Add_at_Index(data["SlotData"],index)
+	inv.Add_Slot_at_Index(data["SlotData"],index)
 	data["inv"].Remove_at_Index(data["Slot"].index)
 	data["Slot"].RemoveSlotData()
 	
@@ -117,7 +136,7 @@ func _drop_data(at_position, data):
 	filled = true
 
 func _on_mouse_entered():
-	if filled:
+	if filled and !dragging:
 		tooltiphandler.setToolTipName(slotData.Item.name,"")
 		tooltiphandler.setToolTipLore(slotData.Item.properties["Lore"])
 		tooltiphandler.setToolTipRank(slotData.Item.properties["Rank"])
@@ -128,4 +147,5 @@ func _on_mouse_exited():
 		tooltiphandler.hide_tooltip()
 
 func _on_hidden():
-	tooltiphandler.hide_tooltip()
+	if tooltiphandler:
+		tooltiphandler.hide_tooltip()

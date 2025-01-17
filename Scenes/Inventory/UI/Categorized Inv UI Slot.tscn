@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://0jenben0gcry"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Categorized Inv UI Slot.gd" id="1_ctksx"]
+[ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="2_c2vuw"]
+
+[sub_resource type="Theme" id="Theme_hwxxx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6b72b"]
+font_size = 29
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Categorized Inv UI Slot" type="Panel"]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ctksx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_c2vuw")
+centered = false
+
+[node name="Silhouette" type="Sprite2D" parent="."]
+texture_filter = 1
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+show_behind_parent = true
+texture_filter = 1
+
+[node name="Label" type="Label" parent="CenterContainer/Panel"]
+custom_minimum_size = Vector2(30, 42)
+layout_mode = 0
+offset_left = -13.0
+offset_top = -4.0
+offset_right = 39.0
+offset_bottom = 39.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_hwxxx")
+theme_type_variation = &"HeaderLarge"
+text = "99"
+label_settings = SubResource("LabelSettings_6b72b")
+horizontal_alignment = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

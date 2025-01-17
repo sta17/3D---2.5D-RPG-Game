@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Party" load_steps=5 format=3 uid="uid://bh3h0liqiwuaq"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Party.gd" id="1_n6bq8"]
+[ext_resource type="Resource" uid="uid://cf3ee528ca0x1" path="res://Scenes/Creatures/Player.tres" id="1_x7bdh"]
+[ext_resource type="Script" path="res://Scripts/Creatures/CurrentCreature.gd" id="2_loxf7"]
+
+[sub_resource type="Resource" id="Resource_7kas5"]
+script = ExtResource("2_loxf7")
+baseCreature = ExtResource("1_x7bdh")
+creaturetype = 0
+DisplayName = "Player Starter"
+Current_HP = 20.0
+Current_Level = 5
+Current_Experience = 0.0
+Current_Speed = 20.0
+Current_Special_Attack = 20.0
+Current_Special_Defense = 20.0
+Current_Attack = 20.0
+Current_Defense = 20.0
+index = 0
+move_array = {}
+
+[resource]
+script = ExtResource("1_n6bq8")
+CreatureSlots = Array[ExtResource("2_loxf7")]([SubResource("Resource_7kas5"), null, null, null, null, null])
