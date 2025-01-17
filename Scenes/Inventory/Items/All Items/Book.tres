@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://7jdlxmmc72cb"]
+
+[ext_resource type="Resource" uid="uid://bm718bcmphjqt" path="res://Scenes/Inventory/Items/Category/General Category.tres" id="1_rlril"]
+[ext_resource type="Texture2D" uid="uid://t816k720nae2" path="res://Assets/Public Domain/Icons34x34byAilsEnglish2013/I_Book.png" id="2_xyil4"]
+[ext_resource type="Script" path="res://addons/inventory-system/core/inventory_item.gd" id="3_84sl1"]
+[ext_resource type="Resource" uid="uid://cd25hd504cpku" path="res://Scenes/Inventory/Items/Category/Common_Rank.tres" id="3_aexrf"]
+
+[resource]
+script = ExtResource("3_84sl1")
+id = 1
+max_stack = 10
+name = "Book"
+icon = ExtResource("2_xyil4")
+weight = 0.0
+properties = {
+"Lore": &"A Common Book, its about some mundane matters.",
+"Rank": ExtResource("3_aexrf")
+}
+categories = Array[Resource("res://addons/inventory-system/core/item_category.gd")]([ExtResource("1_rlril")])

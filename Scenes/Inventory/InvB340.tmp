@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdcrquwpdijgf"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Inv_UI_Slot.gd" id="1_lk7nn"]
+[ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="2_hn82h"]
+
+[sub_resource type="Theme" id="Theme_hwxxx"]
+
+[sub_resource type="SystemFont" id="SystemFont_v7rmo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6b72b"]
+font = SubResource("SystemFont_v7rmo")
+font_size = 29
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[node name="inv_UI_slot" type="Panel"]
+custom_minimum_size = Vector2(32, 32)
+script = ExtResource("1_lk7nn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_hn82h")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+show_behind_parent = true
+
+[node name="Label" type="Label" parent="CenterContainer/Panel"]
+custom_minimum_size = Vector2(30, 42)
+layout_mode = 0
+offset_left = -13.0
+offset_top = -4.0
+offset_right = 39.0
+offset_bottom = 39.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_hwxxx")
+theme_type_variation = &"HeaderLarge"
+text = "99"
+label_settings = SubResource("LabelSettings_6b72b")
+horizontal_alignment = 2

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1ilw7b2gv663"]
+
+[ext_resource type="Texture2D" uid="uid://b1apvlhcx30mq" path="res://Assets/Mine/Brown Square 32x32.png" id="1_v2loe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtck5"]
+albedo_texture = ExtResource("1_v2loe")
+uv1_scale = Vector3(4, 4, 4)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_y28jf"]
+material = SubResource("StandardMaterial3D_dtck5")
+size = Vector3(0.5, 0.05, 0.5)
+
+[node name="Scene Transition" type="Node3D"]
+
+[node name="SpawnPoint" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_y28jf")
+skeleton = NodePath("")

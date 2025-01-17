@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemCategory" load_steps=3 format=3 uid="uid://bm718bcmphjqt"]
+
+[ext_resource type="Texture2D" uid="uid://rh25y41x6vdv" path="res://Assets/Unity Assets/Clean Vector Icons/T_0_empty_.png" id="1_ywavj"]
+[ext_resource type="Script" path="res://addons/inventory-system/core/item_category.gd" id="2_gddj0"]
+
+[resource]
+script = ExtResource("2_gddj0")
+name = "General"
+color = Color(1, 1, 1, 1)
+icon = ExtResource("1_ywavj")

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://dr2qcnln41sm4"]
+
+[ext_resource type="Resource" uid="uid://5cmo6w0to3d" path="res://Scenes/Inventory/Items/Category/Weapons Category.tres" id="1_equv3"]
+[ext_resource type="Texture2D" uid="uid://dytiatb42vg8s" path="res://Assets/Public Domain/Items/sword 6.png" id="2_wnd3a"]
+[ext_resource type="Resource" uid="uid://daq5mehv7ye05" path="res://Scenes/Inventory/Items/Category/Uncommon_Rank.tres" id="3_03aap"]
+[ext_resource type="Script" path="res://addons/inventory-system/core/inventory_item.gd" id="3_rat8a"]
+
+[resource]
+script = ExtResource("3_rat8a")
+id = 2
+max_stack = 2
+name = "Sword"
+icon = ExtResource("2_wnd3a")
+weight = 0.0
+properties = {
+"Lore": &"A Common Sword, some copper has been used to add decoration to the Hilt.",
+"Rank": ExtResource("3_03aap")
+}
+categories = Array[Resource("res://addons/inventory-system/core/item_category.gd")]([ExtResource("1_equv3")])

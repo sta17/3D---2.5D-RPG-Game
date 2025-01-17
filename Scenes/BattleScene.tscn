@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://chffpgdn4wkg0"]
+
+[ext_resource type="Script" path="res://Scripts/BattleScene.gd" id="1_bmkp1"]
+[ext_resource type="Texture2D" uid="uid://l53brq0f8fh7" path="res://Assets/Mine/Green Square 32x32.png" id="1_tmj3u"]
+[ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="3_xlnm1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oglji"]
+albedo_texture = ExtResource("1_tmj3u")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ok1d"]
+material = SubResource("StandardMaterial3D_oglji")
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rlwcs"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_e3ifw"]
+height = 0.15
+
+[node name="BattleScene" type="Node3D"]
+script = ExtResource("1_bmkp1")
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
+mesh = SubResource("BoxMesh_7ok1d")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_rlwcs")
+
+[node name="Battle UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 809.0
+offset_bottom = 414.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Battle UI"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 534.0
+offset_right = 1138.0
+offset_bottom = 632.0
+texture = ExtResource("3_xlnm1")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Panel" type="Panel" parent="Battle UI/NinePatchRect"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Control" parent="Battle UI/NinePatchRect/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Attack Options" type="Control" parent="Battle UI/NinePatchRect/Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Player1" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51135, 0.0128022, 2.49024)
+mesh = SubResource("CylinderMesh_e3ifw")
+skeleton = NodePath("../..")
+
+[node name="Player2" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50731, 0.0128022, 2.49024)
+mesh = SubResource("CylinderMesh_e3ifw")
+skeleton = NodePath("../..")
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="Enemy1" type="MeshInstance3D" parent="Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50731, 0.0128022, -1.49951)
+mesh = SubResource("CylinderMesh_e3ifw")
+skeleton = NodePath("../..")
+
+[node name="Enemy2" type="MeshInstance3D" parent="Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49278, 0.0128022, -1.49951)
+mesh = SubResource("CylinderMesh_e3ifw")
+skeleton = NodePath("../..")

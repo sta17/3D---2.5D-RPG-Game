@@ -1,0 +1,152 @@
+[gd_scene load_steps=22 format=3 uid="uid://bk4bi5qxjrklb"]
+
+[ext_resource type="Script" path="res://Scripts/Scene Manager/SceneLocalHandler.gd" id="1_3l37n"]
+[ext_resource type="Texture2D" uid="uid://b1apvlhcx30mq" path="res://Assets/Mine/Brown Square 32x32.png" id="2_ax6gs"]
+[ext_resource type="Texture2D" uid="uid://dxrl0plwi6tpr" path="res://Assets/Mine/White Square 32x32.png" id="3_7dpae"]
+[ext_resource type="PackedScene" uid="uid://b4edpxfwwcjge" path="res://Scenes/System/interactable.tscn" id="4_cas23"]
+[ext_resource type="PackedScene" uid="uid://dviweorfvgjv0" path="res://Scenes/System/interactable_Blue_Chest.tscn" id="5_hieu0"]
+[ext_resource type="Resource" uid="uid://7jdlxmmc72cb" path="res://Scenes/Inventory/Items/All Items/Book.tres" id="7_mmgac"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="8_3b6qf"]
+[ext_resource type="PackedScene" uid="uid://b1ilw7b2gv663" path="res://Scenes/SceneManager/SpawnPoint.tscn" id="9_jt0k0"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inv_Slot.gd" id="10_1djkv"]
+[ext_resource type="PackedScene" uid="uid://dft8onqba1svg" path="res://Scenes/SceneManager/Scene Transition.tscn" id="10_ppmq5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xiwu5"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_o7ihm"]
+sky_material = SubResource("ProceduralSkyMaterial_xiwu5")
+
+[sub_resource type="Environment" id="Environment_ffmpo"]
+background_mode = 2
+sky = SubResource("Sky_o7ihm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7vlr"]
+albedo_texture = ExtResource("2_ax6gs")
+uv1_scale = Vector3(4, 4, 4)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4l2a8"]
+material = SubResource("StandardMaterial3D_r7vlr")
+size = Vector3(5, 0.5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qr8h6"]
+size = Vector3(5, 0.5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erxin"]
+albedo_texture = ExtResource("3_7dpae")
+uv1_scale = Vector3(4, 4, 4)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_q8mlc"]
+material = SubResource("StandardMaterial3D_erxin")
+size = Vector3(0.5, 2, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jaglp"]
+size = Vector3(0.5, 2, 6)
+
+[sub_resource type="Resource" id="Resource_8aowd"]
+script = ExtResource("10_1djkv")
+Item = ExtResource("7_mmgac")
+amount = 1
+index = 0
+
+[sub_resource type="Resource" id="Resource_lcaxv"]
+script = ExtResource("8_3b6qf")
+inventorySize = 0
+slots = Array[ExtResource("10_1djkv")]([SubResource("Resource_8aowd")])
+
+[node name="Inside" type="Node3D"]
+process_mode = 1
+script = ExtResource("1_3l37n")
+spawn_points = {
+"Inside": Vector3(0, 0, -1.75)
+}
+Area_Display_Name = {
+"Inside": &"Inside"
+}
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 1, 1, -1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_ffmpo")
+
+[node name="Ground" type="Node3D" parent="Environment"]
+
+[node name="Ground" type="MeshInstance3D" parent="Environment/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = SubResource("BoxMesh_4l2a8")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_qr8h6")
+
+[node name="Ground2" type="MeshInstance3D" parent="Environment/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.5, 0)
+mesh = SubResource("BoxMesh_q8mlc")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground/Ground2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/Ground2/StaticBody3D"]
+shape = SubResource("BoxShape3D_jaglp")
+
+[node name="Ground3" type="MeshInstance3D" parent="Environment/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.5, 0)
+mesh = SubResource("BoxMesh_q8mlc")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground/Ground3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/Ground3/StaticBody3D"]
+shape = SubResource("BoxShape3D_jaglp")
+
+[node name="Ground4" type="MeshInstance3D" parent="Environment/Ground"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, -2.75)
+mesh = SubResource("BoxMesh_q8mlc")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground/Ground4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/Ground4/StaticBody3D"]
+shape = SubResource("BoxShape3D_jaglp")
+
+[node name="Ground5" type="MeshInstance3D" parent="Environment/Ground"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 2.75)
+mesh = SubResource("BoxMesh_q8mlc")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground/Ground5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/Ground5/StaticBody3D"]
+shape = SubResource("BoxShape3D_jaglp")
+
+[node name="Interactable" type="Node3D" parent="."]
+
+[node name="Terminal" type="Node3D" parent="Interactable"]
+
+[node name="Shared" parent="Interactable/Terminal" instance=ExtResource("4_cas23")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -2, 0, 1)
+
+[node name="Chest" type="Node3D" parent="Interactable"]
+
+[node name="Chest" parent="Interactable/Chest" instance=ExtResource("5_hieu0")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 2, 0, 0)
+localContent = SubResource("Resource_lcaxv")
+
+[node name="Scene Spawn" parent="." instance=ExtResource("9_jt0k0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.75)
+
+[node name="Scene Transition" parent="." instance=ExtResource("10_ppmq5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25)
+next_scene_path = "res://Scenes/Areas/Test Stage 2.tscn"
+spawn_point = "Outside"

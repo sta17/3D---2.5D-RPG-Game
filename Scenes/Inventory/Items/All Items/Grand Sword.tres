@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://cnvgrkfj3jgyj"]
+
+[ext_resource type="Resource" uid="uid://5cmo6w0to3d" path="res://Scenes/Inventory/Items/Category/Weapons Category.tres" id="1_w3em1"]
+[ext_resource type="Texture2D" uid="uid://uwrnuacoe8pf" path="res://Assets/Public Domain/Items/sword 32.png" id="2_ugmh1"]
+[ext_resource type="Script" path="res://addons/inventory-system/core/inventory_item.gd" id="3_joade"]
+[ext_resource type="Resource" uid="uid://46r02gxpu34s" path="res://Scenes/Inventory/Items/Category/Unique_Rank.tres" id="3_w85q7"]
+
+[resource]
+script = ExtResource("3_joade")
+id = 3
+max_stack = 1
+name = "Grand Sword"
+icon = ExtResource("2_ugmh1")
+weight = 0.0
+properties = {
+"Lore": &"A Sword of Old, mystically forged with lost means",
+"Rank": ExtResource("3_w85q7")
+}
+categories = Array[Resource("res://addons/inventory-system/core/item_category.gd")]([ExtResource("1_w3em1")])

@@ -1,0 +1,206 @@
+[gd_scene load_steps=35 format=3 uid="uid://b5iaq5o4e4a5o"]
+
+[ext_resource type="Script" path="res://Scripts/Scene Manager/SceneLocalHandler.gd" id="1_pdxru"]
+[ext_resource type="Texture2D" uid="uid://dxrl0plwi6tpr" path="res://Assets/Mine/White Square 32x32.png" id="2_lvkdb"]
+[ext_resource type="Texture2D" uid="uid://l53brq0f8fh7" path="res://Assets/Mine/Green Square 32x32.png" id="3_dgb4o"]
+[ext_resource type="PackedScene" uid="uid://dqd47xyoe3stw" path="res://Scenes/Imported Assets/building.tscn" id="3_h3er4"]
+[ext_resource type="PackedScene" uid="uid://rv874uc7mq2j" path="res://Scenes/Server.tscn" id="5_80la6"]
+[ext_resource type="PackedScene" uid="uid://dft8onqba1svg" path="res://Scenes/SceneManager/Scene Transition.tscn" id="5_i308r"]
+[ext_resource type="PackedScene" uid="uid://cg0kse3d3i8j" path="res://Scenes/Inventory/Items/Collectible 2D.tscn" id="5_umayu"]
+[ext_resource type="Resource" uid="uid://cnvgrkfj3jgyj" path="res://Scenes/Inventory/Items/All Items/Grand Sword.tres" id="6_351qd"]
+[ext_resource type="PackedScene" uid="uid://b1ilw7b2gv663" path="res://Scenes/SceneManager/SpawnPoint.tscn" id="6_k3w3x"]
+[ext_resource type="PackedScene" uid="uid://b4edpxfwwcjge" path="res://Scenes/System/interactable.tscn" id="7_ps4m5"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="9_rewwu"]
+[ext_resource type="Resource" uid="uid://b7tj34jqoqljo" path="res://Scenes/Inventory/Items/All Items/Knife.tres" id="10_42o83"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inv_Slot.gd" id="11_w0j05"]
+[ext_resource type="Resource" uid="uid://7jdlxmmc72cb" path="res://Scenes/Inventory/Items/All Items/Book.tres" id="12_no747"]
+[ext_resource type="Resource" uid="uid://dr2qcnln41sm4" path="res://Scenes/Inventory/Items/All Items/Sword.tres" id="13_pdpdj"]
+[ext_resource type="PackedScene" uid="uid://dviweorfvgjv0" path="res://Scenes/System/interactable_Blue_Chest.tscn" id="15_uh2k7"]
+[ext_resource type="PackedScene" uid="uid://b85cssrnfceqg" path="res://Scenes/Server.glb" id="16_82jg3"]
+[ext_resource type="PackedScene" uid="uid://dhxn5816mupbe" path="res://Assets/Mine/Person.tscn" id="18_el7d7"]
+[ext_resource type="PackedScene" uid="uid://ey7uesfx7jkx" path="res://Assets/Mine/Person Armored Final.tscn" id="19_rn10c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xiwu5"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_o7ihm"]
+sky_material = SubResource("ProceduralSkyMaterial_xiwu5")
+
+[sub_resource type="Environment" id="Environment_ffmpo"]
+background_mode = 2
+sky = SubResource("Sky_o7ihm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wva8w"]
+albedo_texture = ExtResource("2_lvkdb")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_c6pix"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_wva8w")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ltxma"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_veurj"]
+albedo_texture = ExtResource("3_dgb4o")
+uv1_scale = Vector3(4, 4, 4)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4l2a8"]
+material = SubResource("StandardMaterial3D_veurj")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_an15q"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="Resource" id="Resource_codf7"]
+script = ExtResource("11_w0j05")
+amount = 0
+index = 0
+
+[sub_resource type="Resource" id="Resource_wa0hf"]
+script = ExtResource("11_w0j05")
+Item = ExtResource("12_no747")
+amount = 2
+index = 0
+
+[sub_resource type="Resource" id="Resource_504s7"]
+script = ExtResource("11_w0j05")
+Item = ExtResource("13_pdpdj")
+amount = 1
+index = 0
+
+[sub_resource type="Resource" id="Resource_vrjcc"]
+script = ExtResource("9_rewwu")
+inventorySize = 0
+slots = Array[ExtResource("11_w0j05")]([SubResource("Resource_codf7"), SubResource("Resource_wa0hf"), SubResource("Resource_504s7")])
+
+[sub_resource type="Resource" id="Resource_fo83a"]
+script = ExtResource("11_w0j05")
+Item = ExtResource("10_42o83")
+amount = 1
+index = 0
+
+[sub_resource type="Resource" id="Resource_lopj8"]
+script = ExtResource("9_rewwu")
+inventorySize = 0
+slots = Array[ExtResource("11_w0j05")]([SubResource("Resource_fo83a")])
+
+[node name="Test Stage" type="Node3D"]
+process_mode = 1
+script = ExtResource("1_pdxru")
+spawn_points = {
+"Outside": Vector3(5, 0, -1.25),
+"Start": Vector3(0, 0, 0)
+}
+Area_Display_Name = {
+"Outside": &"Outside",
+"Start": &"Outside"
+}
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 1, 1, -1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_ffmpo")
+
+[node name="Obstacles" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, 0)
+
+[node name="Cube" type="StaticBody3D" parent="Environment/Obstacles"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Obstacles/Cube"]
+mesh = SubResource("BoxMesh_c6pix")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Obstacles/Cube"]
+shape = SubResource("BoxShape3D_ltxma")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="Environment/Obstacles"]
+radius = 0.75
+
+[node name="Building" parent="Environment/Obstacles" instance=ExtResource("3_h3er4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -0.5, -3)
+
+[node name="Server 2" parent="Environment/Obstacles" instance=ExtResource("16_82jg3")]
+transform = Transform3D(0.530186, 0, -0.847881, 0, 1, 0, 0.847881, 0, 0.530186, -2.91452, -0.125, 3.5)
+
+[node name="Server 3" parent="Environment/Obstacles" instance=ExtResource("16_82jg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.26086, -0.125, 4.40444)
+
+[node name="Server 4" parent="Environment/Obstacles" instance=ExtResource("16_82jg3")]
+transform = Transform3D(0.674274, 0, 0.738481, 0, 1, 0, -0.738481, 0, 0.674274, -2.929, -0.125, 5.238)
+
+[node name="Server" parent="Environment/Obstacles" instance=ExtResource("5_80la6")]
+transform = Transform3D(-0.00913377, 0, 0.149722, 0, 0.15, 0, -0.149722, 0, -0.00913377, -2.1081, -0.125, 5.51193)
+
+[node name="Server2" parent="Environment/Obstacles" instance=ExtResource("5_80la6")]
+transform = Transform3D(-0.00913377, 0, 0.149722, 0, 0.15, 0, -0.149722, 0, -0.00913377, -1.36267, -0.125, 5.44875)
+
+[node name="Person" parent="Environment/Obstacles" instance=ExtResource("18_el7d7")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 5.73825, 0.107713, 4.47557)
+
+[node name="Person Armored Final" parent="Environment/Obstacles" instance=ExtResource("19_rn10c")]
+transform = Transform3D(-0.0656121, 0, 0.997845, 0, 1, 0, -0.997845, 0, -0.0656121, 3.97579, -0.5, 4.48296)
+
+[node name="Ground" type="Node3D" parent="Environment"]
+
+[node name="Ground" type="MeshInstance3D" parent="Environment/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_4l2a8")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/Ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_an15q")
+
+[node name="Scene Transition" parent="Environment" instance=ExtResource("5_i308r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1.875)
+next_scene_path = "res://Scenes/Areas/Inside.tscn"
+spawn_point = "Inside"
+
+[node name="Scene Spawn" parent="Environment" instance=ExtResource("6_k3w3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1.25)
+
+[node name="Interactable" type="Node3D" parent="."]
+
+[node name="Grass" type="Node3D" parent="Interactable"]
+
+[node name="Terminal" type="Node3D" parent="Interactable"]
+
+[node name="Shared" parent="Interactable/Terminal" instance=ExtResource("7_ps4m5")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.31103, 0, 3.22693)
+
+[node name="Items" type="Node3D" parent="Interactable"]
+
+[node name="Collectible1" parent="Interactable/Items" instance=ExtResource("5_umayu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79908, 0.524578, -2.53477)
+item = ExtResource("6_351qd")
+
+[node name="Collectible2" parent="Interactable/Items" instance=ExtResource("5_umayu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.393815, 0.524578, -2.52991)
+item = ExtResource("6_351qd")
+
+[node name="Collectible3" parent="Interactable/Items" instance=ExtResource("5_umayu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07177, 0.524578, -2.53477)
+item = ExtResource("6_351qd")
+
+[node name="Collectible4" parent="Interactable/Items" instance=ExtResource("5_umayu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43615, 0.524578, -2.53477)
+item = ExtResource("6_351qd")
+
+[node name="Chest" type="Node3D" parent="Interactable"]
+
+[node name="Chest 2" parent="Interactable/Chest" instance=ExtResource("15_uh2k7")]
+transform = Transform3D(0.346393, 0, -0.360572, 0, 0.5, 0, 0.360572, 0, 0.346393, 6.68797, 0, -0.261796)
+localContent = SubResource("Resource_vrjcc")
+
+[node name="Chest 1" parent="Interactable/Chest" instance=ExtResource("15_uh2k7")]
+transform = Transform3D(0.000331618, 0, -0.5, 0, 0.5, 0, 0.5, 0, 0.000331618, 6.79423, 0, 0.83381)
+localContent = SubResource("Resource_lopj8")

@@ -1,0 +1,302 @@
+[gd_scene load_steps=16 format=3 uid="uid://c4rxttxqb74i2"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Inv_UI.gd" id="1_32wyj"]
+[ext_resource type="Texture2D" uid="uid://4xhq8i0053ln" path="res://Assets/Unity Assets/Cursors 64/Arrow.png" id="2_nuft4"]
+[ext_resource type="Texture2D" uid="uid://edrsgara0cco" path="res://Assets/Public Domain/Items/Frame.png" id="2_oux61"]
+[ext_resource type="Texture2D" uid="uid://oepbhtnuim7n" path="res://Assets/Unity Assets/Cursors 64/Arrow_Loot.png" id="3_8xolk"]
+[ext_resource type="Texture2D" uid="uid://ccpx17p57ljbj" path="res://Assets/Unity Assets/Cursors 64/Cursor_book.png" id="4_4v01q"]
+[ext_resource type="Texture2D" uid="uid://dw8s5k83r0mlt" path="res://Assets/Unity Assets/Cursors 64/Cursor_Flask.png" id="5_yatfp"]
+[ext_resource type="Texture2D" uid="uid://bcmyblp5b03fy" path="res://Assets/Unity Assets/Cursors 64/Cursor_Settings.png" id="6_bd54g"]
+[ext_resource type="Texture2D" uid="uid://cirywn33ko4ku" path="res://Assets/Unity Assets/Cursors 64/Arrow_Cross_Smaller.png" id="7_mf0mx"]
+[ext_resource type="Texture2D" uid="uid://ln3mqm4k0v8n" path="res://Assets/Unity Assets/Cursors 64/Arrow_Compass.png" id="8_d81gk"]
+[ext_resource type="PackedScene" uid="uid://bsxbl7wbfmg6d" path="res://Scenes/Inventory/UI/New Inv_UI_Slot.tscn" id="10_4uom3"]
+[ext_resource type="LabelSettings" uid="uid://brga87epp8vkw" path="res://Visual Settings/Tooltip_Name_Label_Settings.tres" id="11_m2765"]
+[ext_resource type="LabelSettings" uid="uid://cyml2y20dido5" path="res://Visual Settings/Tooltip_Label_Settings.tres" id="12_tlp30"]
+[ext_resource type="LabelSettings" uid="uid://clrpb3nkyyd5c" path="res://Visual Settings/Tooltip_Rank_Label_Settings.tres" id="12_w5fgi"]
+[ext_resource type="LabelSettings" uid="uid://yfywcy2xayd0" path="res://Visual Settings/Tooltip_Lore_Title_Label_Settings.tres" id="14_e8y0k"]
+[ext_resource type="LabelSettings" uid="uid://dgiyc4l43apdm" path="res://Visual Settings/Tooltip_Lore_Desc_Label_Settings.tres" id="15_8st15"]
+
+[node name="Inv_UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_32wyj")
+default_cursor = ExtResource("2_nuft4")
+coin_cursor = ExtResource("3_8xolk")
+book_cursor = ExtResource("4_4v01q")
+bottle_cursor = ExtResource("5_yatfp")
+setting_cursor = ExtResource("6_bd54g")
+cross_cursor = ExtResource("7_mf0mx")
+compass_cursor = ExtResource("8_d81gk")
+
+[node name="Single Inventory" type="Control" parent="."]
+custom_minimum_size = Vector2(157, 123)
+anchors_preset = 0
+offset_left = 500.0
+offset_top = 130.0
+offset_right = 657.0
+offset_bottom = 253.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Single Inventory"]
+texture_filter = 1
+custom_minimum_size = Vector2(157, 123)
+layout_mode = 0
+offset_right = 157.0
+offset_bottom = 123.0
+texture = ExtResource("2_oux61")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="Single Inventory/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.5
+offset_top = -52.5
+offset_right = 70.5
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="inv_UI_slot1" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot2" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot3" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot4" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot5" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot6" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot7" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot8" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot9" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot10" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot11" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot12" parent="Single Inventory/NinePatchRect/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="Multi Inventory" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="Char_invent" type="NinePatchRect" parent="Multi Inventory"]
+texture_filter = 1
+custom_minimum_size = Vector2(157, 123)
+layout_mode = 0
+offset_left = 585.0
+offset_top = 130.0
+offset_right = 742.0
+offset_bottom = 253.0
+texture = ExtResource("2_oux61")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="Multi Inventory/Char_invent"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.5
+offset_top = -52.5
+offset_right = 70.5
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="inv_UI_slot1" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot2" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot3" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot4" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot5" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot6" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot7" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot8" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot9" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot10" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot11" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot12" parent="Multi Inventory/Char_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="Chest_invent" type="NinePatchRect" parent="Multi Inventory"]
+texture_filter = 1
+custom_minimum_size = Vector2(157, 123)
+layout_mode = 0
+offset_left = 415.0
+offset_top = 130.0
+offset_right = 572.0
+offset_bottom = 253.0
+texture = ExtResource("2_oux61")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="Multi Inventory/Chest_invent"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.5
+offset_top = -52.5
+offset_right = 70.5
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="inv_UI_slot1" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot2" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot3" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot4" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot5" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot6" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot7" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot8" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot9" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot10" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot11" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="inv_UI_slot12" parent="Multi Inventory/Chest_invent/GridContainer" instance=ExtResource("10_4uom3")]
+layout_mode = 2
+
+[node name="Tooltip" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 120.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Tooltip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oux61")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="Tooltip/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="GridContainer" type="GridContainer" parent="Tooltip/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Tooltip_Name" type="Label" parent="Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Item Name Her"
+label_settings = ExtResource("11_m2765")
+vertical_alignment = 1
+
+[node name="Tooltip_Rank" type="Label" parent="Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rank"
+label_settings = ExtResource("12_w5fgi")
+
+[node name="Tooltip_Properties" type="Label" parent="Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Item Name Here"
+label_settings = ExtResource("12_tlp30")
+autowrap_mode = 3
+
+[node name="Tooltip_Lore_Title" type="Label" parent="Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Lore"
+label_settings = ExtResource("14_e8y0k")
+
+[node name="Tooltip_Lore_Desc" type="Label" parent="Tooltip/NinePatchRect/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "S"
+label_settings = ExtResource("15_8st15")
+autowrap_mode = 3
